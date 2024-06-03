@@ -4,17 +4,17 @@ class Basket extends ClothesBuy{
     }
     addToBasket(clothes){
         this.basket.push(clothes);
-        console.log("${clothes}이 바구니에 추가 되었습니다");
+        console.log(`${clothes}이 바구니에 추가 되었습니다`);
     }
 
     removeFromBasket(clothes){
         const index = this.basket.indexOf(clothes);
         if(index == 1){
             this.basket.splice(index, 1);
-            console.log("${clothes}이 바구니에서 제거 되었습니다");
+            console.log(`${clothes}이 바구니에서 제거 되었습니다`);
         }
         else{
-            console.log("${clothes}이 버구니에 없습니다");
+            console.log(`${clothes}이 바구니에 없습니다`);
         }
     }
 
