@@ -1,0 +1,9 @@
+const Clothes = require('./Clothes.js');
+const ClothesSearch = require('./ClothesSerach.js');
+const Basket = require('./Basket.js');
+const ClothList = require('./ClothList.js');
+
+// Example use
+ClothesSearch.example();
+Basket.example();
+ClothList.example();
