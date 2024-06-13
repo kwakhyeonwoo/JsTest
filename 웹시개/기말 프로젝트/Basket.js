@@ -1,3 +1,5 @@
+const Clothes = require('./Clothes.js');
+
 class Basket {
     constructor() {
         this.basket = [];
@@ -45,4 +47,19 @@ class Basket {
         console.log("바구니가 비워졌습니다");
         this.notifyObservers();
     }
+
+    addWithDiscount(clothes, discount) {
+        clothes.price = clothes.price * (1 - discount);
+        this.addToBasket(clothes);
+    }
+
+    static example() {
+        const inventory = Clothes.getInventory();
+        const basket = new Basket();
+        basket.addWithDiscount(inventory[0], 0.1); // T-shirt 10% 할인가
+        basket.addToBasket(inventory[2]); // Jeans Basket에 저장
+        console.log(basket.listBasket());
+    }
 }
+
+module.exports = Basket;
