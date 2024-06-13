@@ -1,0 +1,53 @@
+const Clothes = require('./Clothes.js');
+
+class ClothList {
+    constructor() {
+        this.UpperMenu = [];
+        this.UnderMenu = [];
+        this.Accessory = [];
+    }
+
+    addUpperMenu(UpperMenu) {
+        this.UpperMenu.push(UpperMenu);
+    }
+
+    addUnderMenu(UnderMenu) {
+        this.UnderMenu.push(UnderMenu);
+    }
+
+    addAccessory(Accessory) {
+        this.Accessory.push(Accessory);
+    }
+
+    getUpperMenu() {
+        return this.UpperMenu;
+    }
+
+    getUnderMenu() {
+        return this.UnderMenu;
+    }
+
+    getAccessory() {
+        return this.Accessory;
+    }
+
+    static getInstance() {
+        if (!ClothList.instance) {
+            ClothList.instance = new ClothList();
+        }
+        return ClothList.instance;
+    }
+
+    static example() {
+        const inventory = Clothes.getInventory();
+        const clothList = ClothList.getInstance();
+        clothList.addUpperMenu(inventory[0]); // Add T-Shirt to UpperMenu
+        clothList.addUnderMenu(inventory[2]); // Add Jeans to UnderMenu
+        clothList.addAccessory(inventory[3]); // Add Hat to Accessory
+        console.log(clothList.getUpperMenu());
+        console.log(clothList.getUnderMenu());
+        console.log(clothList.getAccessory());
+    }
+}
+
+module.exports = ClothList;
