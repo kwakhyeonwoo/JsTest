@@ -1,0 +1,25 @@
+class Clothes {
+    constructor(name, price, quantity, options, info, id) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.options = options;
+        this.info = info;
+        this.id = id;
+    }
+
+    toString() {
+        return `Name: ${this.name}, Price: ${this.price}, Quantity: ${this.quantity}, Options: ${this.options}, Info: ${this.info}, ID: ${this.id}`;
+    }
+
+    static getInventory() {
+        return [
+            new Clothes('T-Shirt', 20, 10, 'Size: M', 'Cotton', 1),
+            new Clothes('Jacket', 100, 5, 'Size: L', 'Leather', 2),
+            new Clothes('Jeans', 50, 8, 'Size: 32', 'Denim', 3),
+            new Clothes('Hat', 15, 20, 'Color: Black', 'Wool', 4)
+        ];
+    }
+}
+
+module.exports = Clothes;
