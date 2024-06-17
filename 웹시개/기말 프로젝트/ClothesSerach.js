@@ -1,48 +1,28 @@
 const Clothes = require('./Clothes.js');
 
-class ClothesSerach {
+class ClothesSearch {
     constructor(inventory) {
         this.inventory = inventory;
     }
 
-    searchByUpper(name) {
-        return this.inventory.filter(item =>
-            item.type === 'Upper' && item.name.toLowerCase().includes(name.toLowerCase())
+    searchByType(type, name) {
+        const results = this.inventory.filter(item => 
+            item.type.toLowerCase() === type.toLowerCase() && item.name.toLowerCase().includes(name.toLowerCase())
         );
-    }
 
-    searchByUnder(name) {
-        return this.inventory.filter(item =>
-            item.type === 'Under' && item.name.toLowerCase().includes(name.toLowerCase())
-        );
-    }
-
-    searchByAccessory(name) {
-        return this.inventory.filter(item =>
-            item.type === 'Accessory' && item.name.toLowerCase().includes(name.toLowerCase())
-        );
-    }
-
-    search(command, name) {
-        switch (command.toLowerCase()) {
-            case 'upper':
-                return this.searchByUpper(name);
-            case 'under':
-                return this.searchByUnder(name);
-            case 'accessory':
-                return this.searchByAccessory(name);
-            default:
-                return [];
+        if (results.length > 0) {
+            console.log(`원하는 ${name}이/가 있습니다`);
+            return results;
+        } else {
+            console.log(`원하는 ${name}이/가 없습니다`);
+            return [];
         }
     }
 
     static example() {
         const inventory = Clothes.getInventory();
-        const clothesSerach = new ClothesSerach(inventory);
-        console.log(clothesSerach.search('upper', 'T-Shirt'));
-        console.log(clothesSerach.search('under', 'Jeans'));
-        console.log(clothesSerach.search('accessory', 'Hat'));
+        const clothesSearch = new ClothesSearch(inventory);
     }
 }
 
-module.exports = ClothesSerach;
+module.exports = ClothesSearch;
