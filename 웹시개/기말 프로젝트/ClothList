@@ -1,34 +1,47 @@
 const Clothes = require('./Clothes.js');
+const ClothesSearch = require('./ClothesSearch.js');
 
 class ClothList {
     constructor() {
-        this.UpperMenu = [];
-        this.UnderMenu = [];
-        this.Accessory = [];
+        this.upperMenu = [];
+        this.underMenu = [];
+        this.accessory = [];
     }
 
-    addUpperMenu(UpperMenu) {
-        this.UpperMenu.push(UpperMenu);
+    addUpperMenu(clothes) {
+        if (clothes.length > 0) {
+            this.upperMenu.push(...clothes.map(item => item.toString()));
+        } else {
+            this.upperMenu.push('[]');
+        }
     }
 
-    addUnderMenu(UnderMenu) {
-        this.UnderMenu.push(UnderMenu);
+    addUnderMenu(clothes) {
+        if (clothes.length > 0) {
+            this.underMenu.push(...clothes.map(item => item.toString()));
+        } else {
+            this.underMenu.push('[]');
+        }
     }
 
-    addAccessory(Accessory) {
-        this.Accessory.push(Accessory);
+    addAccessory(clothes) {
+        if (clothes.length > 0) {
+            this.accessory.push(...clothes.map(item => item.toString()));
+        } else {
+            this.accessory.push('[]');
+        }
     }
 
     getUpperMenu() {
-        return this.UpperMenu;
+        return this.upperMenu;
     }
 
     getUnderMenu() {
-        return this.UnderMenu;
+        return this.underMenu;
     }
 
     getAccessory() {
-        return this.Accessory;
+        return this.accessory;
     }
 
     static getInstance() {
@@ -40,10 +53,18 @@ class ClothList {
 
     static example() {
         const inventory = Clothes.getInventory();
+        const clothesSearch = new ClothesSearch(inventory);
         const clothList = ClothList.getInstance();
-        clothList.addUpperMenu(inventory[0]); // Add T-Shirt to UpperMenu
-        clothList.addUnderMenu(inventory[2]); // Add Jeans to UnderMenu
-        clothList.addAccessory(inventory[3]); // Add Hat to Accessory
+
+        const upperResults = clothesSearch.searchByType('upper', 'ManToMan');
+        clothList.addUpperMenu(upperResults);
+
+        const underResults = clothesSearch.searchByType('under', 'Jeans');
+        clothList.addUnderMenu(underResults);
+
+        const accessoryResults = clothesSearch.searchByType('accessory', 'Hat');
+        clothList.addAccessory(accessoryResults);
+
         console.log(clothList.getUpperMenu());
         console.log(clothList.getUnderMenu());
         console.log(clothList.getAccessory());
