@@ -44,6 +44,29 @@ class ClothList {
         return this.accessory;
     }
 
+    // 옵저버 패턴 적용
+    update(basket) {
+        this.upperMenu = [];
+        this.underMenu = [];
+        this.accessory = [];
+
+        basket.forEach(item => {
+            if (item.type === 'upper') {
+                this.addUpperMenu([item]);
+            } else if (item.type === 'under') {
+                this.addUnderMenu([item]);
+            } else if (item.type === 'accessory') {
+                this.addAccessory([item]);
+            }
+        });
+
+        console.log("ClothList 업데이트 완료:");
+        console.log("Upper Menu:", this.getUpperMenu());
+        console.log("Under Menu:", this.getUnderMenu());
+        console.log("Accessory:", this.getAccessory());
+    }
+
+    // Singleton Pattern
     static getInstance() {
         if (!ClothList.instance) {
             ClothList.instance = new ClothList();
